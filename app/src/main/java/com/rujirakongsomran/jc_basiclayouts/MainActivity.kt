@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -20,7 +19,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,7 +37,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JC_BasicLayoutsTheme {
-
+                MyApp()
             }
         }
     }
@@ -186,10 +184,9 @@ fun HomeScreen(
     Column(
         modifier
             .verticalScroll(rememberScrollState())
-            .padding(vertical = 16.dp)
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-        SearchBar(modifier.padding(horizontal = 16.dp))
+        Spacer(Modifier.height(16.dp))
+        SearchBar(Modifier.padding(horizontal = 16.dp))
         HomeSection(title = R.string.align_your_body) {
             AlignYourBodyRow()
         }
@@ -234,6 +231,19 @@ fun BasicLayoutBottomNavigation(
             selected = true,
             onClick = { /*TODO*/ }
         )
+    }
+}
+
+@Composable
+fun MyApp() {
+    JC_BasicLayoutsTheme() {
+        Scaffold(
+            bottomBar = {
+                BasicLayoutBottomNavigation()
+            }
+        ) { padding ->
+            HomeScreen(Modifier.padding(padding))
+        }
     }
 }
 
@@ -327,10 +337,17 @@ fun ScreenContentPreview() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun BasicLayoutBottomNavigationPreview() {
     JC_BasicLayoutsTheme {
         BasicLayoutBottomNavigation()
+    }
+}
+@Preview(widthDp = 360, heightDp = 640)
+@Composable
+fun MySoothePreview() {
+    JC_BasicLayoutsTheme {
+        MyApp()
     }
 }

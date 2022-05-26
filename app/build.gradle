@@ -61,5 +61,8 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
+    // LazyHorizontalGrid
     implementation 'androidx.compose.foundation:foundation:1.2.0-beta02'
+
+    implementation 'com.google.android.material:material:1.7.0-alpha01'
 }
