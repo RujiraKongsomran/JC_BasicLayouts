@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rujirakongsomran.jc_basiclayouts.ui.theme.JC_BasicLayoutsTheme
+import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -135,7 +136,6 @@ fun AlignYourBodyRow(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoriteCollectionsGrid(
     modifier: Modifier = Modifier
@@ -153,6 +153,24 @@ fun FavoriteCollectionsGrid(
                 text = item.text,
             )
         }
+    }
+}
+
+@Composable
+fun HomeSection(
+    modifier: Modifier = Modifier,
+    @StringRes title: Int,
+    content: @Composable () -> Unit
+) {
+    Column(modifier) {
+        Text(
+            stringResource(title).uppercase(Locale.getDefault()),
+            style = MaterialTheme.typography.h2,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
+                .padding(horizontal = 16.dp)
+        )
+        content()
     }
 }
 
@@ -220,10 +238,20 @@ fun AlignYourBodyRowPreview() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionsGridPreview() {
     JC_BasicLayoutsTheme {
         FavoriteCollectionsGrid()
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun HomeSectionPreview() {
+    JC_BasicLayoutsTheme() {
+        HomeSection(title = R.string.align_your_body) {
+            AlignYourBodyRow()
+        }
     }
 }
