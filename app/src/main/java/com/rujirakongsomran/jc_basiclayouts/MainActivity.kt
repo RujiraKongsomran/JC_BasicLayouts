@@ -86,6 +86,34 @@ fun AlignYourBodyElement(
     }
 }
 
+@Composable
+fun FavoriteCollectionCard(
+    modifier: Modifier = Modifier,
+    @DrawableRes drawable: Int,
+    @StringRes text: Int
+) {
+    Surface(
+        modifier = modifier,
+        shape = MaterialTheme.shapes.small
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.width(192.dp)
+        ) {
+            Image(
+                painter = painterResource(drawable),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(56.dp)
+            )
+            Text(
+                stringResource(text),
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+        }
+    }
+}
+
 
 //@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
@@ -95,7 +123,7 @@ fun SearchBarPreview() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun AlignYourBodyElementPreview() {
     JC_BasicLayoutsTheme {
@@ -103,6 +131,18 @@ fun AlignYourBodyElementPreview() {
             drawable = R.drawable.ab1_inversions,
             text = R.string.ab1_inversions,
             modifier = Modifier.padding(8.dp)
+        )
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun FavoriteCollectionCardPreview() {
+    JC_BasicLayoutsTheme {
+        FavoriteCollectionCard(
+            modifier = Modifier.padding(8.dp),
+            drawable = R.drawable.fc2_nature_meditations,
+            text = R.string.fc2_nature_meditations
         )
     }
 }
